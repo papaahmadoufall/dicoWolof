@@ -10,7 +10,6 @@ const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }
 ];
 
 
