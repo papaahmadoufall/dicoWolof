@@ -41,5 +41,17 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.4.2"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/papaahmadoufall/dicoWolof.git"
+  },
+  "author": "alpix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/papaahmadoufall/dicoWolof/issues"
+  },
+  "homepage": "https://github.com/papaahmadoufall/dicoWolof#readme"
 }
