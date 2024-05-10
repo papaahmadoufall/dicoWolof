@@ -1,5 +1,6 @@
 // Import dependencies
 const express = require('express');
+const bcrypt = require('bcrypt');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -27,9 +28,30 @@ connection.connect(err => {
     console.log('Connected to MySQL database');
 });
 
-// Define routes
-app.get('/', (req, res) => {
-    res.send('Hello from Express!');
+// Route for user registration
+app.post('/auth/register', (req, res) => {
+    const { name, email, password } = req.body;
+
+    // Hash the password
+    bcrypt.hash(password, 10, (err, hash) => {
+        if (err) {
+            console.error('Error hashing password:', err);
+            res.status(500).json({ error: 'Internal server error' });
+            return;
+        }
+
+        // Insert user data into database
+        const sql = 'INSERT INTO users (name, email, password) VALUES (?, ?, ?)';
+        connection.query(sql, [name, email, hash], (err, result) => {
+            if (err) {
+                console.error('Error registering user:', err);
+                res.status(500).json({ error: 'Error registering user' });
+                return;
+            }
+            console.log('User registered successfully');
+            res.status(200).json({ message: 'User registered successfully' });
+        });
+    });
 });
 
 // Start server
